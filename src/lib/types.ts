@@ -114,6 +114,11 @@ export interface Question {
 	 * Similar questions
 	 */
 	similars: Question[];
+
+	/**
+	 * Get clean content from question
+	 */
+	cleanContent: () => string;
 }
 
 /**
@@ -171,6 +176,10 @@ export interface Answer {
 	 * Database ID
 	 */
 	databaseId: number;
+	/**
+	 * Get clean content from the answer
+	 */
+	cleanContent: () => string;
 }
 
 export interface Comment {

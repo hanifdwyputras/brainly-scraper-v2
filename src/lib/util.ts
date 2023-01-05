@@ -183,7 +183,8 @@ export default class Util {
 	public static convertAnswer(answer: OriginalAnswer): Answer {
 		const parseId = Util.parseId(answer.id);
 		const expectedObject: Answer = {
-			content: this.clearContent(answer.content),
+			cleanContent: () => this.clearContent(answer.content),
+			content: answer.content,
 			author: answer.author
 				? this.convertAuthor(answer.author)
 				: undefined,
@@ -221,7 +222,8 @@ export default class Util {
 		const parseId = Util.parseId(question.id);
 		const expectedObject: Question = {
 			id: parseId.join(':'),
-			content: this.clearContent(question.content),
+			cleanContent: () => this.clearContent(question.content),
+			content: question.content,
 			closed: question.isClosed,
 			created: {
 				iso: question.created,
