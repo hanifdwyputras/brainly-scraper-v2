@@ -76,7 +76,7 @@ export interface Question {
 	 * Question's lesson category.
 	 */
 	education: string;
-	education_level?: number;
+	educationLevel?: number;
 	/**
 	 * Can we answer the question?
 	 */
@@ -84,14 +84,14 @@ export interface Question {
 	/**
 	 * If we answer the question, how many points will we receive?
 	 */
-	points_answer: {
+	pointsAnswer: {
 		forBest: number;
 		normal: number;
 	};
 	/**
 	 * Points issued by the questioner.
 	 */
-	points_question: number;
+	pointsQuestion: number;
 	/**
 	 * The question's grade level
 	 */
@@ -339,7 +339,7 @@ export interface Author {
 	/**
 	 * The author's avatar url.
 	 */
-	avatar_url?: string;
+	avatarUrl?: string;
 	/**
 	 * The author's rank.
 	 */
@@ -380,12 +380,12 @@ export interface AuthorQuestionData {
 	education: string;
 	canBeAnswered: boolean;
 	attachments: string[];
-	education_level: number;
-	points_answer: {
+	educationLevel: number;
+	pointsAnswer: {
 		forBest: number;
 		normal: number;
 	};
-	points_question: number;
+	pointsQuestion: number;
 	grade: string;
 }
 

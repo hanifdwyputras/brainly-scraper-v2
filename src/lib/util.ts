@@ -108,7 +108,7 @@ export default class Util {
 			id: parseId.join(':'),
 			helpedUsersCount: author.helpedUsersCount,
 			receivedThanks: author.receivedThanks,
-			avatar_url: author.avatar ? author.avatar.url : undefined,
+			avatarUrl: author.avatar ? author.avatar.url : undefined,
 			gender: author.gender,
 			points: author.points,
 			bestAnswersCount: author.bestAnswersCount,
@@ -140,12 +140,12 @@ export default class Util {
 							education: r.node.subject.name,
 							canBeAnswered: r.node.canBeAnswered,
 							attachments: r.node.attachments.map((x) => x.url),
-							education_level: r.node.eduLevel,
-							points_answer: {
+							educationLevel: r.node.eduLevel,
+							pointsAnswer: {
 								forBest: r.node.pointsForBestAnswer,
 								normal: r.node.pointsForAnswer,
 							},
-							points_question: r.node.points,
+							pointsQuestion: r.node.points,
 							grade: r.node.grade.name,
 						} as AuthorQuestionData),
 				),
@@ -232,13 +232,13 @@ export default class Util {
 				? this.convertAuthor(question.author)
 				: undefined,
 			education: question.subject.name,
-			education_level: question.eduLevel ?? undefined,
+			educationLevel: question.eduLevel ?? undefined,
 			canBeAnswered: question.canBeAnswered,
-			points_answer: {
+			pointsAnswer: {
 				forBest: question.pointsForBestAnswer,
 				normal: question.pointsForAnswer,
 			},
-			points_question: question.points,
+			pointsQuestion: question.points,
 			grade: question.grade.name,
 			lastActivity: question.lastActivity,
 			verifiedAnswer: question.answers.hasVerified,
