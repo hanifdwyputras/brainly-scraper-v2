@@ -631,7 +631,7 @@ query SearchQuery($query: String!, $len: Int!) {
 }
 
 query FindQuestionById($id: ID!) {
-  node: question(id: $id) {
+  question: question(id: $id) {
     id
     points
     pointsForAnswer
