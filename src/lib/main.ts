@@ -171,7 +171,7 @@ export class Brainly {
 									? id
 									: Util.convertId(id, 'question'),
 							},
-							{ name: 'searchById' },
+							{ name: 'searchQuestionById' },
 						),
 					),
 				);

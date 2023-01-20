@@ -181,9 +181,9 @@ export default class Util {
 	 * @return {Answer}
 	 */
 	public static convertAnswer(answer: OriginalAnswer): Answer {
-		const parseId = Util.parseId(answer.id);
+		const parseId = answer.id ? Util.parseId(answer.id) : ['UNKNOWN_ID', 0];
 		const expectedObject: Answer = {
-			cleanContent: () => this.clearContent(answer.content),
+			// cleanContent: () => this.clearContent(answer.content),
 			content: answer.content,
 			author: answer.author
 				? this.convertAuthor(answer.author)
@@ -204,7 +204,7 @@ export default class Util {
 			comments: answer.comments.edges.map((x) =>
 				this.convertComment(x.node),
 			),
-			databaseId: parseId[1],
+			databaseId: parseId[1] as number,
 			id: parseId.join(':'),
 		};
 		return expectedObject;
@@ -222,7 +222,7 @@ export default class Util {
 		const parseId = Util.parseId(question.id);
 		const expectedObject: Question = {
 			id: parseId.join(':'),
-			cleanContent: () => this.clearContent(question.content),
+			// cleanContent: () => this.clearContent(question.content),
 			content: question.content,
 			closed: question.isClosed,
 			created: {
