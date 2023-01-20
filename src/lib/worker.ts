@@ -48,14 +48,14 @@ export async function search({
 			options,
 		);
 		const json = response.data as Array<JsonRes>;
-		console.log((json as any)[0].errors);
 		const validJSON = json[0].data.questionSearch!.edges;
 
 		const objects = validJSON.map((obj) => {
 			const question: Question = Util.convertQuestion(obj.node);
-			const answers: Answer[] = obj.node.answers.nodes.map((answerObj) =>
+			const answers: Answer[] = obj.node.answers?.nodes?.map(
+				(answerObj) =>
 				Util.convertAnswer(answerObj),
-			);
+			) || [];
 			return {
 				question,
 				answers,
@@ -160,9 +160,9 @@ export async function searchQuestionById({
 		const validJSON = json[0].data.question;
 		const question: Question = Util.convertQuestion(validJSON!);
 
-		const answers: Answer[] = validJSON?.answers.nodes.map((answerObj) =>
+		const answers: Answer[] = validJSON?.answers?.nodes?.map((answerObj) =>
 			Util.convertAnswer(answerObj),
-		)!;
+		) || [];
 
 		return { question, answers };
 	} catch (err) {

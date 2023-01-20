@@ -106,29 +106,29 @@ export default class Util {
 		const expectedObject: Author = {
 			username: author.nick,
 			id: parseId.join(':'),
-			helpedUsersCount: author.helpedUsersCount,
+			helpedUsersCount: author.helpedUsersCount || 0,
 			receivedThanks: author.receivedThanks,
 			avatarUrl: author.avatar ? author.avatar.url : undefined,
 			gender: author.gender,
 			points: author.points,
 			bestAnswersCount: author.bestAnswersCount,
 			rank: author.rank ? author.rank.name : '-',
-			specialRanks: author.specialRanks.length
+			specialRanks: author.specialRanks?.length
 				? author.specialRanks.map((r) => r.name)
 				: [],
 			created: {
 				iso: author.created,
 				date: new Date(author.created),
 			},
-			friendsCount: author.friends.count,
+			friendsCount: author.friends?.count || 0,
 			bestAnswers: {
-				count: author.bestAnswersCount,
-				InLast30Days: author.bestAnswersCountInLast30Days,
+				count: author.bestAnswersCount || 0,
+				InLast30Days: author.bestAnswersCountInLast30Days || 0,
 			},
 			answerStreak: author.answeringStreak,
 			questions: {
-				count: author.questions.count,
-				data: author.questions.edges.map(
+				count: author.questions?.count,
+				data: author.questions?.edges?.map(
 					(r) =>
 						({
 							content: this.clearContent(r.node.content),
@@ -137,18 +137,19 @@ export default class Util {
 								iso: r.node.created,
 								date: new Date(r.node.created),
 							},
-							education: r.node.subject.name,
+							education: r.node.subject?.name || '-',
 							canBeAnswered: r.node.canBeAnswered,
-							attachments: r.node.attachments.map((x) => x.url),
+							attachments: r.node.attachments?.map((x) => x.url)
+								|| [],
 							educationLevel: r.node.eduLevel,
 							pointsAnswer: {
 								forBest: r.node.pointsForBestAnswer,
 								normal: r.node.pointsForAnswer,
 							},
 							pointsQuestion: r.node.points,
-							grade: r.node.grade.name,
+							grade: r.node.grade?.name || 'UNKNOWN',
 						} as AuthorQuestionData),
-				),
+				) || [],
 			},
 			databaseId: parseId[1],
 		};
@@ -233,7 +234,7 @@ export default class Util {
 			author: question.author
 				? this.convertAuthor(question.author)
 				: undefined,
-			education: question.subject.name,
+			education: question.subject?.name,
 			educationLevel: question.eduLevel ?? undefined,
 			canBeAnswered: question.canBeAnswered,
 			pointsAnswer: {
@@ -241,9 +242,9 @@ export default class Util {
 				normal: question.pointsForAnswer,
 			},
 			pointsQuestion: question.points,
-			grade: question.grade.name,
+			grade: question.grade?.name,
 			lastActivity: question.lastActivity,
-			verifiedAnswer: question.answers.hasVerified,
+			verifiedAnswer: question.answers?.hasVerified,
 			// answers: question.answers.nodes.map((x) => this.convertAnswer(x)),
 			databaseId: parseId[1],
 			similars:
