@@ -128,28 +128,29 @@ export default class Util {
 			answerStreak: author.answeringStreak,
 			questions: {
 				count: author.questions?.count,
-				data: author.questions?.edges?.map(
-					(r) =>
-						({
-							content: this.clearContent(r.node.content),
-							closed: r.node.isClosed,
-							created: {
-								iso: r.node.created,
-								date: new Date(r.node.created),
-							},
-							education: r.node.subject?.name || '-',
-							canBeAnswered: r.node.canBeAnswered,
-							attachments: r.node.attachments?.map((x) => x.url)
-								|| [],
-							educationLevel: r.node.eduLevel,
-							pointsAnswer: {
-								forBest: r.node.pointsForBestAnswer,
-								normal: r.node.pointsForAnswer,
-							},
-							pointsQuestion: r.node.points,
-							grade: r.node.grade?.name || 'UNKNOWN',
-						} as AuthorQuestionData),
-				) || [],
+				data:
+					author.questions?.edges?.map(
+						(r) =>
+							({
+								content: this.clearContent(r.node.content),
+								closed: r.node.isClosed,
+								created: {
+									iso: r.node.created,
+									date: new Date(r.node.created),
+								},
+								education: r.node.subject?.name || '-',
+								canBeAnswered: r.node.canBeAnswered,
+								attachments:
+									r.node.attachments?.map((x) => x.url) || [],
+								educationLevel: r.node.eduLevel,
+								pointsAnswer: {
+									forBest: r.node.pointsForBestAnswer,
+									normal: r.node.pointsForAnswer,
+								},
+								pointsQuestion: r.node.points,
+								grade: r.node.grade?.name || 'UNKNOWN',
+							} as AuthorQuestionData),
+					) || [],
 			},
 			databaseId: parseId[1],
 		};
