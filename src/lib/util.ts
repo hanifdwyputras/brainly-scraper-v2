@@ -46,8 +46,8 @@ export default class Util {
 			Array.isArray(id)
 				? id.join(':')
 				: type?.length
-				? type + ':' + id.toString()
-				: id.toString(),
+					? type + ':' + id.toString()
+					: id.toString(),
 		).toString('base64');
 	}
 	/**
@@ -149,7 +149,7 @@ export default class Util {
 								},
 								pointsQuestion: r.node.points,
 								grade: r.node.grade?.name || 'UNKNOWN',
-							} as AuthorQuestionData),
+							}) as AuthorQuestionData,
 					) || [],
 			},
 			databaseId: parseId[1],
@@ -252,7 +252,7 @@ export default class Util {
 				'similar' in question
 					? question.similar?.map((q) =>
 							Util.convertQuestion(q.question),
-					  )
+						)
 					: [],
 		};
 

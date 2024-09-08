@@ -1,8 +1,8 @@
 const { Brainly } = require('../build');
 
-void Brainly.initialize();
 (async() => {
-    const br = new Brainly('id', true, false);
+    await Brainly.initialize();
+    const br = new Brainly('id', true, true);
     const results = await br.searchWithMT('1+1 =');
 
     console.log(results[0]);

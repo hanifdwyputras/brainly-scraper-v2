@@ -329,13 +329,16 @@ export class Brainly {
 	static client(country: CountryList): AxiosInstance {
 		return fetcherClient(Brainly.getBaseURL(country), {
 			headers: {
-				// 'User-Agent': Util.getRandomUA(),
+				'User-Agent':
+					// eslint-disable-next-line max-len
+					'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3',
 				Origin: Brainly.getBaseURL(country),
 				Referer: Brainly.getBaseURL(country),
 				'Sec-Fetch-Dest': 'empty',
 				'Sec-Fetch-Mode': 'cors',
 				'Sec-Fetch-Site': 'same-origin',
 				TE: 'trailers',
+				'Sec-Gpc': '1',
 			},
 		});
 	}
